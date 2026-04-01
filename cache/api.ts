@@ -1,6 +1,11 @@
-// cache/api.ts  
 import { api } from "encore.dev/api";
-import { testKeyspace } from "./encore.service";
+import { CacheCluster, StringKeyspace } from "encore.dev/storage/cache";
+
+export const cluster = new CacheCluster("default", { evictionPolicy: "allkeys-lru" });
+
+export const testKeyspace = new StringKeyspace<{ key: string }>(cluster, {
+  keyPattern: "test/:key",
+});
 
 export const set = api(
   { expose: true, method: "GET", path: "/cache/set" },
