@@ -7,10 +7,11 @@
   },
   "redis": {
     "default": {
-      "host": "redis",
+      "host": "redis:6379",
       "database_index": 0,
-      "max_connections": 50,
-      "min_connections": 1
+      "tls_config": {
+        "disabled": true
+      }
     }
   }
 }
